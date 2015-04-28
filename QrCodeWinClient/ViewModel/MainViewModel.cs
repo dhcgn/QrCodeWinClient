@@ -13,6 +13,7 @@ using System.Linq;
 using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows;
+using Microsoft.Win32;
 
 namespace QrCodeWinClient
 {
@@ -92,10 +93,9 @@ namespace QrCodeWinClient
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 
                 SaveQRCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
+                SaveQRCodeDialogCommand = new RelayCommand(SaveQRCodeDialog);
+                CopyQRCodeToClipboardCommand = new RelayCommand(CopyQRCodeToClipboard);
             }
-
-            //this.RaisePropertyChanged("Settings");
-            //this.RaisePropertyChanged("DarkBrush");
         }
 
         private void SaveQRCodeToLibrary()
@@ -103,6 +103,25 @@ namespace QrCodeWinClient
             ImageSaver.SaveQRCodeToLibrary(QrCodeImage);
         }
 
+        private void SaveQRCodeDialog()
+        {
+            var dlg = new SaveFileDialog
+            {
+                FileName = "QrCode.png",
+                DefaultExt = ".png",
+                Filter = "PNG (.png)|*.png"
+            };
+
+            if (dlg.ShowDialog().Value)
+            {
+                ImageSaver.SaveQRCodeToLibrary(QrCodeImage, dlg.FileName);
+            }
+        }
+
+        private void CopyQRCodeToClipboard()
+        {
+            Clipboard.SetImage(this.QrCodeImage);
+        }
 
 
         private void ReveiceQRCode(QrCodeResponseMessage qrCodeResponseMessage)
@@ -134,6 +153,9 @@ namespace QrCodeWinClient
                 encoder.Save(filestream);
         }
 
-
+        internal static void SaveQRCodeToLibrary(BitmapImage qrCodeImage, string fileName)
+        {
+            SaveBitmapIamge(fileName, qrCodeImage);
+        }
     }
 }

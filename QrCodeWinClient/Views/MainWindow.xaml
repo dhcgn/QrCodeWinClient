@@ -23,8 +23,15 @@
         </Grid.RowDefinitions>
 
         <!-- QrCode -->
-        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform"
-               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor">
+           <Image.ContextMenu>
+               <ContextMenu>
+                <MenuItem Header="to Clipboard" Command="{Binding CopyQRCodeToClipboardCommand}" />
+                   <MenuItem Header="to Library" Command="{Binding SaveQRCodeToLibraryCommand}" />
+                   <MenuItem Header="to Location" Command="{Binding SaveQRCodeDialogCommand}" />
+               </ContextMenu>
+           </Image.ContextMenu>
+        </Image>
 
         <!-- Options -->
         <StackPanel Grid.Row="1">
