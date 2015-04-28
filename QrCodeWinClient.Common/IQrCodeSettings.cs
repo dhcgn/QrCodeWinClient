@@ -8,8 +8,8 @@ namespace QrCodeWinClient.Common
 
         int ModuleSize { get; set; }
 
-        Brush LightBrush { get; set; }
+        SolidBrush LightBrush { get; set; }
 
-        Brush DarkBrush { get; set; }
+        SolidBrush DarkBrush { get; set; }
     }
 }

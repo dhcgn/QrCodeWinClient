@@ -1,9 +1,10 @@
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace QrCodeWinClient.Common
 {
     public class QrCodeResponseMessage
     {
-        public ImageSource QrCodeImage { get; set; }
+        public BitmapImage QrCodeImage { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace QrCodeWinClient.Export.Test
         [TestMethod]
         public void TestMethod1()
         {
-            var temp = QrCodeExporter.Export(ErrorCorrectionLevel.M, "Hello World", 12, new SolidBrush(Color.Black),new SolidBrush(Color.White)) ;
+            var temp = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, "Hello World", 12, new SolidBrush(Color.Black),new SolidBrush(Color.White)) ;
 
         }
     }

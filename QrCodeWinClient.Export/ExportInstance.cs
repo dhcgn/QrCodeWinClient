@@ -18,9 +18,15 @@ namespace QrCodeWinClient.Export
             Messenger.Default.Register<QrCodeRequestMessage>(this, this.StartQrCodeGeneration);
         }
 
-        private void StartQrCodeGeneration(QrCodeRequestMessage qrCodeRequestMessage)
+        private void StartQrCodeGeneration(QrCodeRequestMessage message)
         {
-            var qrCodeImage = QrCodeExporter.Export(qrCodeRequestMessage.Settings.ErrorCorrectionLevel, qrCodeRequestMessage.Value, qrCodeRequestMessage.Settings.ModuleSize, qrCodeRequestMessage.Settings.DarkBrush, qrCodeRequestMessage.Settings.LightBrush);
+            var qrCodeImage = QrCodeExporter.Export(
+                message.Settings.ErrorCorrectionLevel, 
+                message.Value, 
+                message.Settings.ModuleSize, 
+                message.Settings.DarkBrush, 
+                message.Settings.LightBrush);
+
             Messenger.Default.Send<QrCodeResponseMessage>(new QrCodeResponseMessage() {QrCodeImage = qrCodeImage});
         }
 
@@ -41,13 +47,6 @@ namespace QrCodeWinClient.Export
             }
         }
 
-        //public void StartQrCodeGeneration(string value, IQrCodeSettings settings, Action<QrCodeResponseMessage> reveiceQRCode)
-        //{
-        //    reveiceQRCode.Invoke(new QrCodeResponseMessage()
-        //    {
-        //        QrCodeImage = QrCodeExporter.Export(settings.ErrorCorrectionLevel, value, settings.ModuleSize, settings.DarkBrush, settings.LightBrush)
-        //    });
-        //}
         public void Init()
         {
             

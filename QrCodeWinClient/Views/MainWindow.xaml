@@ -13,28 +13,57 @@
         <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveQRCodeToLibraryCommand}" />
         <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveQRCodeDialogCommand}" />
     </Window.InputBindings>
-    
-    
-    
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-    
-        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor"></Image>
-        
+
+        <!-- QrCode -->
+        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform"
+               RenderOptions.BitmapScalingMode="NearestNeighbor" />
+
+        <!-- Options -->
         <StackPanel Grid.Row="1">
-            <Expander Header="QrCode Options"></Expander>
-            <Expander Header="Password Options"></Expander>
+            <Expander Header="QrCode Options">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="ModuleSize" Style="{StaticResource TextBlockOptionStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.ModuleSize}" Style="{StaticResource TextBoxOptionStyle}"  Margin="2"   />
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel" Style="{StaticResource TextBlockOptionStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Settings.ErrorCorrectionLevel}" ItemsSource="{Binding ErrorCorrectionLevels}" Style="{StaticResource ComboBoxOptionStyle}" FontSize="10" Margin="2"  />
+
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush" Style="{StaticResource TextBlockOptionStyle}" />
+                    <Border Grid.Row="0" Grid.Column="3" Background="{Binding Settings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}" BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush" Style="{StaticResource TextBlockOptionStyle}" />
+                    <Border Grid.Row="1" Grid.Column="3" Background="{Binding Settings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}" BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15"/>
+
+                </Grid>
+
+            </Expander>
+            <Expander Header="Password Options" />
         </StackPanel>
-        
-        
+
+
         <!-- Input -->
-        <TextBox Grid.Row="2" MinHeight="150" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Consolas" />
+        <TextBox Grid.Row="2" MinHeight="150" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"
+                 FontFamily="Consolas" />
 
         <!-- Commands -->
         <Grid Grid.Row="3">
@@ -43,11 +72,11 @@
                     <ColumnDefinition />
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
-                
-                <Button Grid.Column="0" Margin="5" Padding="5" Content="Create Password"></Button>
-                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard"></Button>
+
+                <Button Grid.Column="0" Margin="5" Padding="5" Content="Create Password" />
+                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard" />
             </Grid>
         </Grid>
-        
+
     </Grid>
 </Window>

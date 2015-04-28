@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Windows.Media;
 using System.Xml.Serialization;
 using GalaSoft.MvvmLight;
@@ -6,10 +7,13 @@ using GalaSoft.MvvmLight.Messaging;
 using QrCodeWinClient.Common;
 using QrCodeWinClient.Export;
 using System.Drawing;
-using Brush = System.Drawing.Brush;
-using Brushes = System.Drawing.Brushes;
+using System.Diagnostics;
+using System;
+using System.Linq;
+using System.IO;
+using System.Windows.Media.Imaging;
 
-namespace QrCodeWinClient.ViewModel
+namespace QrCodeWinClient
 {
     public class MainViewModel : ViewModelBase
     {
@@ -35,9 +39,9 @@ namespace QrCodeWinClient.ViewModel
             }
         }
 
-        private ImageSource qrCodeImage;
+        private BitmapImage qrCodeImage;
 
-        public ImageSource QrCodeImage
+        public BitmapImage QrCodeImage
         {
             get { return this.qrCodeImage; }
             set { this.Set(ref this.qrCodeImage, value); }
@@ -51,6 +55,11 @@ namespace QrCodeWinClient.ViewModel
             set { this.Set(ref this.settings, value); }
         }
 
+        public IEnumerable<ErrorCorrectionLevel> ErrorCorrectionLevels
+        {
+            get { return Enum.GetValues(typeof (ErrorCorrectionLevel)).Cast<ErrorCorrectionLevel>(); }
+        }
+
         #endregion
 
         /// <summary>
@@ -60,7 +69,7 @@ namespace QrCodeWinClient.ViewModel
         {
             if (this.IsInDesignMode)
             {
-                // Code runs in Blend --> create design time data.
+                this.Settings = new QrCodeSettings();
             }
             else
             {
@@ -68,8 +77,22 @@ namespace QrCodeWinClient.ViewModel
                 this.MessengerInstance.Register<QrCodeResponseMessage>(this, this.ReveiceQRCode);
 
                 this.Settings = new QrCodeSettings();
+
+                this.Settings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.Settings));
+
+                SaveQRCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
             }
+
+            //this.RaisePropertyChanged("Settings");
+            //this.RaisePropertyChanged("DarkBrush");
         }
+
+        private void SaveQRCodeToLibrary()
+        {
+            ImageSaver.SaveQRCodeToLibrary(QrCodeImage);
+        }
+
+
 
         private void ReveiceQRCode(QrCodeResponseMessage qrCodeResponseMessage)
         {
@@ -77,46 +100,29 @@ namespace QrCodeWinClient.ViewModel
         }
     }
 
-    public class QrCodeSettings : ViewModelBase, IQrCodeSettings
+    public class ImageSaver
     {
-        public QrCodeSettings()
+        private static string GetFileName()
         {
-            this.ErrorCorrectionLevel = ErrorCorrectionLevel.M;
-            this.ModuleSize = 1;
-            this.LightBrush = Brushes.White;
-            this.DarkBrush = Brushes.Black;
+            return DateTime.Now.ToString("yyyy-mm-dd - HH_mm_ss") + " QR_Code.png";
         }
 
-        private ErrorCorrectionLevel errorCorrectionLevel;
-
-        public ErrorCorrectionLevel ErrorCorrectionLevel
+        internal static void SaveQRCodeToLibrary(BitmapImage qrCodeImage)
         {
-            get { return this.errorCorrectionLevel; }
-            set { this.Set(ref this.errorCorrectionLevel, value); }
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
+            string combine = Path.Combine(path, GetFileName());
+            SaveBitmapIamge(combine, qrCodeImage);
         }
 
-        private int moduleSize;
-
-        public int ModuleSize
+        private static void SaveBitmapIamge(string fileName, BitmapImage qrCodeImage)
         {
-            get { return this.moduleSize; }
-            set { this.Set(ref this.moduleSize, value); }
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(qrCodeImage));
+
+            using (var filestream = new FileStream(fileName, FileMode.Create))
+                encoder.Save(filestream);
         }
 
-        private Brush lightBrush;
 
-        public Brush LightBrush
-        {
-            get { return this.lightBrush; }
-            set { this.Set(ref this.lightBrush, value); }
-        }
-
-        private Brush darkBrush;
-
-        public Brush DarkBrush
-        {
-            get { return this.darkBrush; }
-            set { this.Set(ref this.darkBrush, value); }
-        }
     }
 }
