@@ -23,14 +23,15 @@
         </Grid.RowDefinitions>
 
         <!-- QrCode -->
-        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor">
-           <Image.ContextMenu>
-               <ContextMenu>
-                <MenuItem Header="to Clipboard" Command="{Binding CopyQRCodeToClipboardCommand}" />
-                   <MenuItem Header="to Library" Command="{Binding SaveQRCodeToLibraryCommand}" />
-                   <MenuItem Header="to Location" Command="{Binding SaveQRCodeDialogCommand}" />
-               </ContextMenu>
-           </Image.ContextMenu>
+        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform"
+               RenderOptions.BitmapScalingMode="NearestNeighbor">
+            <Image.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="to Clipboard" Command="{Binding CopyQRCodeToClipboardCommand}" />
+                    <MenuItem Header="to Library" Command="{Binding SaveQRCodeToLibraryCommand}" />
+                    <MenuItem Header="to Location" Command="{Binding SaveQRCodeDialogCommand}" />
+                </ContextMenu>
+            </Image.ContextMenu>
         </Image>
 
         <!-- Options -->
@@ -50,16 +51,26 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="ModuleSize" Style="{StaticResource TextBlockOptionStyle}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.ModuleSize}" Style="{StaticResource TextBoxOptionStyle}"  Margin="2"   />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.ModuleSize}"
+                             Style="{StaticResource TextBoxOptionStyle}" Margin="2" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel" Style="{StaticResource TextBlockOptionStyle}" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Settings.ErrorCorrectionLevel}" ItemsSource="{Binding ErrorCorrectionLevels}" Style="{StaticResource ComboBoxOptionStyle}" FontSize="10" Margin="2"  />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Settings.ErrorCorrectionLevel}"
+                              ItemsSource="{Binding ErrorCorrectionLevels}"
+                              Style="{StaticResource ComboBoxOptionStyle}" FontSize="10" Margin="2" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush" Style="{StaticResource TextBlockOptionStyle}" />
-                    <Border Grid.Row="0" Grid.Column="3" Background="{Binding Settings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}" BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15"/>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <Border Grid.Row="0" Grid.Column="3"
+                            Background="{Binding Settings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
+                            BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush" Style="{StaticResource TextBlockOptionStyle}" />
-                    <Border Grid.Row="1" Grid.Column="3" Background="{Binding Settings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}" BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15"/>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <Border Grid.Row="1" Grid.Column="3"
+                            Background="{Binding Settings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
+                            BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15" />
 
                 </Grid>
 
@@ -69,7 +80,8 @@
 
 
         <!-- Input -->
-        <TextBox Grid.Row="2" MinHeight="150" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" AcceptsReturn="True"
+        <TextBox Grid.Row="2" MinHeight="150" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
+                 AcceptsReturn="True"
                  FontFamily="Consolas" />
 
         <!-- Commands -->

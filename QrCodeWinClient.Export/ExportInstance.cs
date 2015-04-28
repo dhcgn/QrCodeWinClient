@@ -21,10 +21,10 @@ namespace QrCodeWinClient.Export
         private void StartQrCodeGeneration(QrCodeRequestMessage message)
         {
             var qrCodeImage = QrCodeExporter.Export(
-                message.Settings.ErrorCorrectionLevel, 
-                message.Value, 
-                message.Settings.ModuleSize, 
-                message.Settings.DarkBrush, 
+                message.Settings.ErrorCorrectionLevel,
+                message.Value,
+                message.Settings.ModuleSize,
+                message.Settings.DarkBrush,
                 message.Settings.LightBrush);
 
             Messenger.Default.Send<QrCodeResponseMessage>(new QrCodeResponseMessage() {QrCodeImage = qrCodeImage});
@@ -49,7 +49,6 @@ namespace QrCodeWinClient.Export
 
         public void Init()
         {
-            
         }
     }
 }

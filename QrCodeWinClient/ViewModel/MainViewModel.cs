@@ -36,7 +36,7 @@ namespace QrCodeWinClient
             get { return this.inputText; }
             set
             {
-                if(String.IsNullOrEmpty(value))
+                if (String.IsNullOrEmpty(value))
                 {
                     this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
                 }
@@ -44,7 +44,7 @@ namespace QrCodeWinClient
                 {
                     this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.Settings));
                 }
-                
+
                 this.Set(ref this.inputText, value);
             }
         }

@@ -11,7 +11,7 @@ namespace QrCodeWinClient
             this.ErrorCorrectionLevel = ErrorCorrectionLevel.M;
             this.ModuleSize = 12;
             this.LightBrush = new SolidBrush(Color.White);
-            this.DarkBrush =new SolidBrush(Color.Black);
+            this.DarkBrush = new SolidBrush(Color.Black);
         }
 
         private ErrorCorrectionLevel errorCorrectionLevel;

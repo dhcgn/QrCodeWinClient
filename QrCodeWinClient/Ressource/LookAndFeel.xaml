@@ -1,13 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    
+
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="Converters/Converter.xaml"></ResourceDictionary>
-        
-        <ResourceDictionary Source="BitmapGraphics/BitmapGraphics.xaml"></ResourceDictionary>
-        
-        <ResourceDictionary Source="Styles/ComboBox.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="Styles/TextBlock.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="Styles/TextBox.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="Converters/Converter.xaml" />
+
+        <ResourceDictionary Source="BitmapGraphics/BitmapGraphics.xaml" />
+
+        <ResourceDictionary Source="Styles/ComboBox.xaml" />
+        <ResourceDictionary Source="Styles/TextBlock.xaml" />
+        <ResourceDictionary Source="Styles/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

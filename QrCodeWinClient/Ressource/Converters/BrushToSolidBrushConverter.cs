@@ -11,7 +11,7 @@ using Color = System.Windows.Media.Color;
 
 namespace QrCodeWinClient
 {
-    [ValueConversion(typeof(SolidBrush), typeof(SolidColorBrush))]
+    [ValueConversion(typeof (SolidBrush), typeof (SolidColorBrush))]
     public class BrushToSolidBrushConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
