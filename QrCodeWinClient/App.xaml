@@ -9,7 +9,6 @@
     <Application.Resources>
 
         <ResourceDictionary>
-            <!--<viewModel:ViewModelLocator x:Key="Locator" d:IsDataSource="True"/>-->
             <local:ViewModelLocator x:Key="Locator" d:IsDataSource="True" />
 
             <ResourceDictionary.MergedDictionaries>
