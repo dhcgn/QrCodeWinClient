@@ -79,6 +79,10 @@
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\QrCodeSettings.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
+    <Page Include="Ressource\BitmapGraphics\BitmapGraphics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ressource\Converters\Converter.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -140,7 +144,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Ressource\BitmapGraphics\EmptyQrCode.png" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\QrCodeWinClient.Common\QrCodeWinClient.Common.csproj">
       <Project>{6c146867-bec9-4cc4-9021-0ca9b3d1e74f}</Project>

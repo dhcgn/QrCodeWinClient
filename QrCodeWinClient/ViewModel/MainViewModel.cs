@@ -12,6 +12,7 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Windows.Media.Imaging;
+using System.Windows;
 
 namespace QrCodeWinClient
 {
@@ -34,7 +35,15 @@ namespace QrCodeWinClient
             get { return this.inputText; }
             set
             {
-                this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.Settings));
+                if(String.IsNullOrEmpty(value))
+                {
+                    this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
+                }
+                else
+                {
+                    this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.Settings));
+                }
+                
                 this.Set(ref this.inputText, value);
             }
         }
@@ -70,6 +79,7 @@ namespace QrCodeWinClient
             if (this.IsInDesignMode)
             {
                 this.Settings = new QrCodeSettings();
+                this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
             }
             else
             {
@@ -77,8 +87,9 @@ namespace QrCodeWinClient
                 this.MessengerInstance.Register<QrCodeResponseMessage>(this, this.ReveiceQRCode);
 
                 this.Settings = new QrCodeSettings();
-
                 this.Settings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.Settings));
+
+                this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 
                 SaveQRCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
             }

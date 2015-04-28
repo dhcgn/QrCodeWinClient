@@ -4,6 +4,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="Converters/Converter.xaml"></ResourceDictionary>
         
+        <ResourceDictionary Source="BitmapGraphics/BitmapGraphics.xaml"></ResourceDictionary>
+        
         <ResourceDictionary Source="Styles/ComboBox.xaml"></ResourceDictionary>
         <ResourceDictionary Source="Styles/TextBlock.xaml"></ResourceDictionary>
         <ResourceDictionary Source="Styles/TextBox.xaml"></ResourceDictionary>
