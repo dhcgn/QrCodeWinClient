@@ -1,0 +1,49 @@
+﻿<Window x:Class="QrCodeWinClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QrCodeWinClient"
+        mc:Ignorable="d"
+        Title="QrCode Generator" Height="480" Width="255"
+        DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
+
+    <Window.InputBindings>
+        <KeyBinding Key="C" Modifiers="Control" Command="{Binding CopyQRCodeToClipboardCommand}" />
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveQRCodeToLibraryCommand}" />
+        <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveQRCodeDialogCommand}" />
+    </Window.InputBindings>
+    
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="1">
+            <Expander Header="QrCode Options"></Expander>
+            <Expander Header="Password Options"></Expander>
+        </StackPanel>
+        
+        
+        <!-- Input -->
+        <TextBox Grid.Row="2" MinHeight="150" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}" FontFamily="Consolas" />
+
+        <!-- Commands -->
+        <Grid Grid.Row="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                
+                <Button Grid.Column="0" Margin="5" Padding="5" Content="Create Password"></Button>
+                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard"></Button>
+            </Grid>
+        </Grid>
+        
+    </Grid>
+</Window>
