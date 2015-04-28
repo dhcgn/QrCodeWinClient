@@ -14,6 +14,8 @@
         <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveQRCodeDialogCommand}" />
     </Window.InputBindings>
     
+    
+    
 
     <Grid>
         <Grid.RowDefinitions>
@@ -22,6 +24,8 @@
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
+    
+        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform" RenderOptions.BitmapScalingMode="NearestNeighbor"></Image>
         
         <StackPanel Grid.Row="1">
             <Expander Header="QrCode Options"></Expander>

@@ -22,7 +22,7 @@ namespace QrCodeWinClient
     {
         public MainWindow()
         {
-            InitializeComponent();
+            this.InitializeComponent();
         }
     }
 }
