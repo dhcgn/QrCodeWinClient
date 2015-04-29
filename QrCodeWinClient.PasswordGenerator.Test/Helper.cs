@@ -27,7 +27,6 @@ namespace QrCodeWinClient.PasswordGenerator.Test
    public class PasswordSettings : IPasswordSettings
     {
         public int Length { get; set; }
-        public int Entropy { get; set; }
         public bool ForceEach { get; set; }
         public bool IncludeNumeric { get; set; }
         public bool IncludeAlphaLower { get; set; }

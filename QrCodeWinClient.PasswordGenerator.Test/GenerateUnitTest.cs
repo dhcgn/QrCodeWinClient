@@ -124,6 +124,32 @@ namespace QrCodeWinClient.PasswordGenerator.Test
             Assert.IsTrue(entropy >= 64, "Entropy was {0}, but exptected higher than {1}", entropy, 64);
         }
 
+
+        [TestMethod]
+        public void AllSymbolsMinLength()
+        {
+            var passwordSettings = new PasswordSettings();
+            passwordSettings.Length = 5;
+            passwordSettings.IncludeNumeric = true;
+            passwordSettings.IncludeAlphaLower = true;
+            passwordSettings.IncludeAlphaUpper = true;
+            passwordSettings.IncludeSymbolSetNormal = true;
+            passwordSettings.IncludeSymbolSetExtended = true;
+            passwordSettings.ForceEach = true;
+
+            var pwd = PasswordGenerator.Generate(passwordSettings);
+
+            Assert.AreEqual(5, pwd.Length);
+
+            var entropy = PasswordGenerator.CalcRealEntropy(pwd);
+
+            // L = Number of symbols in the password
+            // N = number of possible symbols
+            // L  log 2   N
+            // 5 Log[2, 90] = 32.459
+            Assert.IsTrue(entropy >= 32, "Entropy was {0}, but exptected higher than {1}", entropy, 32);
+        }
+
         [TestMethod]
         public void Generate_Length_Fail()
         {
