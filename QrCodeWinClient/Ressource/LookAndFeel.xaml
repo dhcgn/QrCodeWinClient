@@ -9,5 +9,6 @@
         <ResourceDictionary Source="Styles/ComboBox.xaml" />
         <ResourceDictionary Source="Styles/TextBlock.xaml" />
         <ResourceDictionary Source="Styles/TextBox.xaml" />
+        <ResourceDictionary Source="Styles/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

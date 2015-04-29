@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:QrCodeWinClient"
         mc:Ignorable="d"
         Title="QrCode Generator" Height="480" Width="255"
+        Icon="../Ressource/BitmapGraphics/Logo.png"
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
     <Window.InputBindings>
@@ -52,25 +53,16 @@
 
                     <TextBlock Text="ModuleSize" Style="{StaticResource TextBlockOptionStyle}" />
                     <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.ModuleSize}"
-                             Style="{StaticResource TextBoxOptionStyle}" Margin="2" />
+                             Style="{StaticResource TextBoxOptionStyle}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel"
-                               Style="{StaticResource TextBlockOptionStyle}" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Settings.ErrorCorrectionLevel}"
-                              ItemsSource="{Binding ErrorCorrectionLevels}"
-                              Style="{StaticResource ComboBoxOptionStyle}" FontSize="10" Margin="2" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel" Style="{StaticResource TextBlockOptionStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Settings.ErrorCorrectionLevel}" ItemsSource="{Binding ErrorCorrectionLevels}" Style="{StaticResource ComboBoxOptionStyle}" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush"
-                               Style="{StaticResource TextBlockOptionStyle}" />
-                    <Border Grid.Row="0" Grid.Column="3"
-                            Background="{Binding Settings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
-                            BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush" Style="{StaticResource TextBlockOptionStyle}" />
+                    <Button Grid.Row="0" Grid.Column="3" Background="{Binding Settings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush"
-                               Style="{StaticResource TextBlockOptionStyle}" />
-                    <Border Grid.Row="1" Grid.Column="3"
-                            Background="{Binding Settings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
-                            BorderBrush="#5C5C5C" BorderThickness="1" Margin="2" Height="15" />
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush" Style="{StaticResource TextBlockOptionStyle}" />
+                    <Button Grid.Row="1" Grid.Column="3" Background="{Binding Settings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"  />
 
                 </Grid>
 
@@ -93,7 +85,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Margin="5" Padding="5" Content="Create Password" />
-                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard" />
+                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard" Command="{Binding CopyQRCodeToClipboardCommand}" />
             </Grid>
         </Grid>
 

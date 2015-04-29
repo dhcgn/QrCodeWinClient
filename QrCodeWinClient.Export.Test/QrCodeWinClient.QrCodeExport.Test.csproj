@@ -65,9 +65,9 @@
       <Project>{6c146867-bec9-4cc4-9021-0ca9b3d1e74f}</Project>
       <Name>QrCodeWinClient.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QrCodeWinClient.Export\QrCodeWinClient.Export.csproj">
+    <ProjectReference Include="..\QrCodeWinClient.Export\QrCodeWinClient.QrCodeExport.csproj">
       <Project>{23a2512d-6436-4b43-9166-826014762f3b}</Project>
-      <Name>QrCodeWinClient.Export</Name>
+      <Name>QrCodeWinClient.QrCodeExport</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>

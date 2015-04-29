@@ -53,16 +53,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>616254A94F08CEED1F5053DF8D77AF5FAF10F007</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>3DA5F8A1F2C794D6BDA5B29F2E471EED9B8C86E5</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>QrCodeWinClient.Presentation_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>QrCodeWinClient.Presentation_1_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <SignManifests>true</SignManifests>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Ressource\BitmapGraphics\Logo.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup />
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="GalaSoft.MvvmLight, Version=5.1.1.35049, Culture=neutral, PublicKeyToken=e7570ab207bcb616, processorArchitecture=MSIL">
@@ -122,6 +132,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Ressource\Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Ressource\Styles\ComboBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -166,12 +180,12 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="QrCodeWinClient.Presentation_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -184,9 +198,9 @@
       <Project>{6c146867-bec9-4cc4-9021-0ca9b3d1e74f}</Project>
       <Name>QrCodeWinClient.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\QrCodeWinClient.Export\QrCodeWinClient.Export.csproj">
+    <ProjectReference Include="..\QrCodeWinClient.Export\QrCodeWinClient.QrCodeExport.csproj">
       <Project>{23a2512d-6436-4b43-9166-826014762f3b}</Project>
-      <Name>QrCodeWinClient.Export</Name>
+      <Name>QrCodeWinClient.QrCodeExport</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -200,6 +214,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressource\BitmapGraphics\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Ressource\BitmapGraphics\Logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
