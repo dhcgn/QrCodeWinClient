@@ -42,7 +42,7 @@ namespace QrCodeWinClient
                 }
                 else
                 {
-                    this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.Settings));
+                    this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.QrSettings));
                 }
 
                 this.Set(ref this.inputText, value);
@@ -57,12 +57,20 @@ namespace QrCodeWinClient
             set { this.Set(ref this.qrCodeImage, value); }
         }
 
-        private QrCodeSettings settings;
+        private QrCodeSettings qrSettings;
 
-        public QrCodeSettings Settings
+        public QrCodeSettings QrSettings
         {
-            get { return this.settings; }
-            set { this.Set(ref this.settings, value); }
+            get { return this.qrSettings; }
+            set { this.Set(ref this.qrSettings, value); }
+        }
+
+        private PasswordSettings passwordSettings;
+
+        public PasswordSettings PasswordSettings
+        {
+            get { return this.passwordSettings; }
+            set { this.Set(ref this.passwordSettings, value); }
         }
 
         public IEnumerable<ErrorCorrectionLevel> ErrorCorrectionLevels
@@ -79,7 +87,9 @@ namespace QrCodeWinClient
         {
             if (this.IsInDesignMode)
             {
-                this.Settings = new QrCodeSettings();
+                this.QrSettings = new QrCodeSettings();
+                this.PasswordSettings = new PasswordSettings();
+
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
             }
             else
@@ -87,8 +97,8 @@ namespace QrCodeWinClient
                 ExportInstance.Instance.Init();
                 this.MessengerInstance.Register<QrCodeResponseMessage>(this, this.ReveiceQRCode);
 
-                this.Settings = new QrCodeSettings();
-                this.Settings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.Settings));
+                this.QrSettings = new QrCodeSettings();
+                this.QrSettings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettings));
 
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 

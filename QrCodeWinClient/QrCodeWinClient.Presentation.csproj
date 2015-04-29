@@ -118,6 +118,7 @@
     </ApplicationDefinition>
     <Compile Include="Ressource\Converters\BrushToSolidBrushConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PasswordSettings.cs" />
     <Compile Include="ViewModel\QrCodeSettings.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Ressource\BitmapGraphics\BitmapGraphics.xaml">
@@ -133,6 +134,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Ressource\Styles\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Ressource\Styles\CheckBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Ressource\BitmapGraphics\Logo.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Ressource\Docs\Help.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

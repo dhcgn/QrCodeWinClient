@@ -1,0 +1,11 @@
+﻿_____ Shortcuts: _____________________________________________________________
+Control + C            Copy image to clipboard, when text isn't selected
+Control + S            Save to picture folder
+Control + Shift + S    Save to selected folder
+
+_____ Informations: __________________________________________________________
+zxcvbn: realistic password strength estimation
+https://tech.dropbox.com/2012/04/zxcvbn-realistic-password-strength-estimation/
+
+XKCD #936: Short complex password, or long dictionary passphrase?
+http://security.stackexchange.com/questions/6095/xkcd-936-short-complex-password-or-long-dictionary-passphrase
