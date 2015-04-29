@@ -48,11 +48,6 @@ namespace QrCodeWinClient.Export
 
             QrCode qrCode;
             encoder.TryEncode(inputText, out qrCode);
-            // encoder.TryEncode(System.Text.Encoding.UTF8.GetBytes(inputText), out qrCode);
-
-            //byte[] bytes = Encoding.Default.GetBytes(inputText);
-            //inputText = Encoding.UTF8.GetString(bytes);
-            //encoder.TryEncode(inputText, out qrCode);
 
             var gRenderer = new GraphicsRenderer(new FixedModuleSize(moduleSize, QuietZoneModules.Two), darkBrush, lightBrush);
 

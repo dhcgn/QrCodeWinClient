@@ -11,7 +11,8 @@ namespace QrCodeWinClient.Export.Test
         {
             var bitmap = BitmapImage2Bitmap(bitmapImage);
             IBarcodeReader reader = new BarcodeReader();
-            var output = reader.Decode(bitmap).Text;
+            var decode = reader.Decode(bitmap);
+            var output = decode.Text;
 
             return output;
         }

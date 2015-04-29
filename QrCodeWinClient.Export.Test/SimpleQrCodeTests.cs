@@ -58,6 +58,5 @@ namespace QrCodeWinClient.Export.Test
 
             Assert.AreEqual(input, output);
         }
-    
     }
 }

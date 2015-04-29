@@ -61,6 +61,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="QrCodeTechnicalTests.cs" />
     <Compile Include="QrCodeUtils.cs" />
     <Compile Include="SimpleQrCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
