@@ -207,6 +207,10 @@
       <Project>{23a2512d-6436-4b43-9166-826014762f3b}</Project>
       <Name>QrCodeWinClient.QrCodeExport</Name>
     </ProjectReference>
+    <ProjectReference Include="..\QrCodeWinClient.PasswordGenerator\QrCodeWinClient.PasswordGenerator.csproj">
+      <Project>{ec2d6a8e-c80c-4395-9c9c-3831922bff82}</Project>
+      <Name>QrCodeWinClient.PasswordGenerator</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

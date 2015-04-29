@@ -10,7 +10,6 @@ using System.Drawing;
 using System.Diagnostics;
 using System;
 using System.Linq;
-using System.IO;
 using System.Windows.Media.Imaging;
 using System.Windows;
 using Microsoft.Win32;
@@ -24,6 +23,7 @@ namespace QrCodeWinClient
         public RelayCommand CopyQRCodeToClipboardCommand { get; set; }
         public RelayCommand SaveQRCodeToLibraryCommand { get; set; }
         public RelayCommand SaveQRCodeDialogCommand { get; set; }
+        public RelayCommand GeneratePasswordCommand { get; set; }
 
         #endregion
 
@@ -39,10 +39,12 @@ namespace QrCodeWinClient
                 if (String.IsNullOrEmpty(value))
                 {
                     this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
+                    this.RealEntropy = 0;
                 }
                 else
                 {
                     this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.QrSettings));
+                    this.RealEntropy = PasswordGenerator.EntropyCalculator.CalcRealEntropy(value);
                 }
 
                 this.Set(ref this.inputText, value);
@@ -66,6 +68,7 @@ namespace QrCodeWinClient
         }
 
         private PasswordSettings passwordSettings;
+        
 
         public PasswordSettings PasswordSettings
         {
@@ -77,6 +80,22 @@ namespace QrCodeWinClient
         {
             get { return Enum.GetValues(typeof (ErrorCorrectionLevel)).Cast<ErrorCorrectionLevel>(); }
         }
+
+        private int entropy;
+        public int Entropy
+        {
+            get { return this.entropy; }
+            set { this.Set(ref this.entropy, value); }
+        }
+
+        private int realEntropy;
+        public int RealEntropy
+        {
+            get { return this.realEntropy; }
+            set { this.Set(ref this.realEntropy, value); }
+        }
+
+
 
         #endregion
 
@@ -91,6 +110,9 @@ namespace QrCodeWinClient
                 this.PasswordSettings = new PasswordSettings();
 
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
+
+                this.Entropy = 128;
+                this.RealEntropy = 121;
             }
             else
             {
@@ -100,12 +122,25 @@ namespace QrCodeWinClient
                 this.QrSettings = new QrCodeSettings();
                 this.QrSettings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettings));
 
+                this.PasswordSettings = new PasswordSettings();
+                this.PasswordSettings.PropertyChanged += (sender, args) =>
+                {
+                    this.GeneratePasswordCommand.RaiseCanExecuteChanged();
+                    this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettings);
+                };
+
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 
                 SaveQRCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
                 SaveQRCodeDialogCommand = new RelayCommand(SaveQRCodeDialog);
                 CopyQRCodeToClipboardCommand = new RelayCommand(CopyQRCodeToClipboard);
+                GeneratePasswordCommand = new RelayCommand(GeneratePassword, ()=>PasswordSettings.IsValid());
             }
+        }
+
+        private void GeneratePassword()
+        {
+            this.InputText = PasswordGenerator.PasswordGenerator.Generate(this.PasswordSettings);
         }
 
         private void SaveQRCodeToLibrary()
@@ -137,35 +172,6 @@ namespace QrCodeWinClient
         private void ReveiceQRCode(QrCodeResponseMessage qrCodeResponseMessage)
         {
             this.QrCodeImage = qrCodeResponseMessage.QrCodeImage;
-        }
-    }
-
-    public class ImageSaver
-    {
-        private static string GetFileName()
-        {
-            return DateTime.Now.ToString("yyyy-mm-dd - HH_mm_ss") + " QR_Code.png";
-        }
-
-        internal static void SaveQRCodeToLibrary(BitmapImage qrCodeImage)
-        {
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures);
-            string combine = Path.Combine(path, GetFileName());
-            SaveBitmapIamge(combine, qrCodeImage);
-        }
-
-        private static void SaveBitmapIamge(string fileName, BitmapImage qrCodeImage)
-        {
-            var encoder = new PngBitmapEncoder();
-            encoder.Frames.Add(BitmapFrame.Create(qrCodeImage));
-
-            using (var filestream = new FileStream(fileName, FileMode.Create))
-                encoder.Save(filestream);
-        }
-
-        internal static void SaveQRCodeToLibrary(BitmapImage qrCodeImage, string fileName)
-        {
-            SaveBitmapIamge(fileName, qrCodeImage);
         }
     }
 }

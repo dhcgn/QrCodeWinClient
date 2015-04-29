@@ -4,6 +4,8 @@
     <Style x:Key="TextBoxOptionStyle" TargetType="TextBox">
         <Setter Property="Margin" Value="2" />
         <Setter Property="FontSize" Value="10" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 
     <Style x:Key="TextBoxInputStyle" TargetType="TextBox">

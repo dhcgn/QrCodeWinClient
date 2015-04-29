@@ -52,29 +52,88 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="ModuleSize" Style="{StaticResource TextBlockOptionStyle}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Settings.ModuleSize}"
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding QrSettings.ModuleSize}"
                              Style="{StaticResource TextBoxOptionStyle}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel" Style="{StaticResource TextBlockOptionStyle}" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding Settings.ErrorCorrectionLevel}" ItemsSource="{Binding ErrorCorrectionLevels}" Style="{StaticResource ComboBoxOptionStyle}" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding QrSettings.ErrorCorrectionLevel}"
+                              ItemsSource="{Binding ErrorCorrectionLevels}"
+                              Style="{StaticResource ComboBoxOptionStyle}" />
 
-                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush" Style="{StaticResource TextBlockOptionStyle}" />
-                    <Button Grid.Row="0" Grid.Column="3" Background="{Binding Settings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}" />
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <Button Grid.Row="0" Grid.Column="3"
+                            Background="{Binding QrSettings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
+                            Style="{StaticResource ButtonColorSelectorOptionStyle}" />
 
-                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush" Style="{StaticResource TextBlockOptionStyle}" />
-                    <Button Grid.Row="1" Grid.Column="3" Background="{Binding Settings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"  />
+                    <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <Button Grid.Row="1" Grid.Column="3"
+                            Background="{Binding QrSettings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
+                            Style="{StaticResource ButtonColorSelectorOptionStyle}" />
 
                 </Grid>
 
             </Expander>
-            <Expander Header="Password Options" />
+
+            <Expander Header="Password Options">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="40" Width="Auto" />
+                        <ColumnDefinition Width="45" />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="Length" Style="{StaticResource TextBlockOptionStyle}" />
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PasswordSettings.Length}"
+                             Style="{StaticResource TextBoxOptionStyle}" />
+
+                    <CheckBox Grid.Row="0" Grid.Column="2" Content="force each"
+                              IsChecked="{Binding PasswordSettings.ForceEach}"
+                              Style="{StaticResource CheckBoxOptionStyle}" />
+
+                    <StackPanel Grid.Row="0" Grid.Column="3">
+                        <TextBlock Text="{Binding Entropy, StringFormat={}SOLL {0}bit}"
+                                   Style="{StaticResource TextBlockOptionStyle}" HorizontalAlignment="Right" />
+                        <TextBlock Text="{Binding RealEntropy, StringFormat={}IST {0}bit}"
+                                   Style="{StaticResource TextBlockOptionStyle}" HorizontalAlignment="Right" />
+
+                    </StackPanel>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Include"
+                               Style="{StaticResource TextBlockOptionStyle}" />
+                    <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
+
+                        <CheckBox Content="N" Style="{StaticResource CheckBoxOptionStyle}"
+                                  IsChecked="{Binding PasswordSettings.IncludeNumeric}" />
+
+                        <CheckBox Content="a" Style="{StaticResource CheckBoxOptionStyle}"
+                                  IsChecked="{Binding PasswordSettings.IncludeAlphaLower}" />
+
+                        <CheckBox Content="A" Style="{StaticResource CheckBoxOptionStyle}"
+                                  IsChecked="{Binding PasswordSettings.IncludeAlphaUpper}" />
+
+                        <CheckBox Content="S1" Style="{StaticResource CheckBoxOptionStyle}"
+                                  IsChecked="{Binding PasswordSettings.IncludeSymbolSetNormal}" />
+
+                        <CheckBox Content="S2" Style="{StaticResource CheckBoxOptionStyle}"
+                                  IsChecked="{Binding PasswordSettings.IncludeSymbolSetExtended}" />
+                    </StackPanel>
+                </Grid>
+            </Expander>
         </StackPanel>
 
 
         <!-- Input -->
-        <TextBox Grid.Row="2" MinHeight="150" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
-                 AcceptsReturn="True"
-                 FontFamily="Consolas" />
+        <TextBox Grid.Row="2" Text="{Binding InputText, UpdateSourceTrigger=PropertyChanged}"
+                 Style="{StaticResource TextBoxInputStyle}" />
 
         <!-- Commands -->
         <Grid Grid.Row="3">
@@ -84,8 +143,10 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Column="0" Margin="5" Padding="5" Content="Create Password" />
-                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard" Command="{Binding CopyQRCodeToClipboardCommand}" />
+                <Button Grid.Column="0" Margin="5" Padding="5" Content="Create Password"
+                        Command="{Binding GeneratePasswordCommand}" />
+                <Button Grid.Column="1" Margin="5" Padding="5" Content="Copy to Clipboard"
+                        Command="{Binding CopyQRCodeToClipboardCommand}" />
             </Grid>
         </Grid>
 
