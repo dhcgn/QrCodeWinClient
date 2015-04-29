@@ -3,9 +3,6 @@ using Gma.QrCodeNet.Encoding;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Windows.Media;
 using System.Drawing;
-using System.IO;
-using System.Windows.Media.Imaging;
-using ZXing;
 using Color = System.Drawing.Color;
 
 namespace QrCodeWinClient.Export.Test
@@ -20,9 +17,7 @@ namespace QrCodeWinClient.Export.Test
 
             var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
-            var bitmap = BitmapImage2Bitmap(bitmapImage);
-            IBarcodeReader reader = new BarcodeReader();
-            var output = reader.Decode(bitmap).Text;
+            var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
             Assert.AreEqual(input, output);
         }
@@ -34,9 +29,7 @@ namespace QrCodeWinClient.Export.Test
 
             var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
-            var bitmap = BitmapImage2Bitmap(bitmapImage);
-            IBarcodeReader reader = new BarcodeReader();
-            var output = reader.Decode(bitmap).Text;
+            var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
             Assert.AreEqual(input, output);
         }
@@ -49,25 +42,22 @@ namespace QrCodeWinClient.Export.Test
 
             var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
-            var bitmap = BitmapImage2Bitmap(bitmapImage);
-            IBarcodeReader reader = new BarcodeReader();
-            var output = reader.Decode(bitmap).Text;
+            var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
             Assert.AreEqual(input, output);
         }
-
-
-        private Bitmap BitmapImage2Bitmap(BitmapImage bitmapImage)
+    
+        [TestMethod]
+        public void GenerateQrCodeComplex()
         {
-            using (MemoryStream outStream = new MemoryStream())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(bitmapImage));
-                enc.Save(outStream);
-                System.Drawing.Bitmap bitmap = new System.Drawing.Bitmap(outStream);
+            var input = @"Köln Düsseldorf 7m5*847OT6%YqMJGU#|,v\4w#e!\dp öäüÄÖÜ \@€";
 
-                return new Bitmap(bitmap);
-            }
+            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
+
+            var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
+
+            Assert.AreEqual(input, output);
         }
+    
     }
 }
