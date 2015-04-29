@@ -52,7 +52,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="ModuleSize" Style="{StaticResource TextBlockOptionStyle}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding QrSettings.ModuleSize}"
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding QrSettings.ModuleSize, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource TextBoxOptionStyle}" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel"
@@ -92,7 +92,7 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Length" Style="{StaticResource TextBlockOptionStyle}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PasswordSettings.Length}"
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PasswordSettings.Length, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource TextBoxOptionStyle}" />
 
                     <CheckBox Grid.Row="0" Grid.Column="2" Content="force each"

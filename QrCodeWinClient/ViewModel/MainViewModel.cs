@@ -113,6 +113,8 @@ namespace QrCodeWinClient
 
                 this.Entropy = 128;
                 this.RealEntropy = 121;
+
+                this.InputText = "7mGwdDUhBafPMqwj13C7AFwM1JICXEko";
             }
             else
             {
@@ -123,6 +125,7 @@ namespace QrCodeWinClient
                 this.QrSettings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettings));
 
                 this.PasswordSettings = new PasswordSettings();
+                this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettings);
                 this.PasswordSettings.PropertyChanged += (sender, args) =>
                 {
                     this.GeneratePasswordCommand.RaiseCanExecuteChanged();

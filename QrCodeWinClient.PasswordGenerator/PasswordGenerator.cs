@@ -15,23 +15,52 @@ namespace QrCodeWinClient.PasswordGenerator
 
             var combinedCharSet = GetCombinedCharSet(settings);
 
-            var password = CreatePassword(combinedCharSet, settings.Length);
+            var password = CreatePassword(combinedCharSet, settings.Length, settings);
 
             return password;
         }
 
-        private static string CreatePassword(string combinedCharSet, int length)
+        private static string CreatePassword(string combinedCharSet, int length, IPasswordSettings settings)
         {
             var random = new CryptoRandom();
 
-            var sb = new StringBuilder();
-            for (int i = 0; i < length; i++)
+            for (int i = 0; i < Int32.MaxValue; i++)
             {
-                int rndIndex = random.Next(0, combinedCharSet.Length);
-                sb.Append(combinedCharSet[rndIndex]);
+                var sb = new StringBuilder();
+                for (int pwdIndex = 0; pwdIndex < length; pwdIndex++)
+                {
+                    int rndIndex = random.Next(0, combinedCharSet.Length);
+                    sb.Append(combinedCharSet[rndIndex]);
+                }
+
+                var password = sb.ToString();
+                if(settings.ForceEach && ContainsAllCharSets(settings, password))
+                    return password;
+                else if(!settings.ForceEach)
+                    return password;
             }
 
-            return sb.ToString();
+            return null;
+        }
+
+        private static bool ContainsAllCharSets(IPasswordSettings settings, string password)
+        {
+            if(settings.IncludeNumeric && !password.Any(x=> CharSets.Numbers.Contains(x)))
+                return false;
+
+            if(settings.IncludeAlphaLower && !password.Any(x=> CharSets.AlphaLower.Contains(x)))
+                return false;
+
+            if(settings.IncludeAlphaUpper && !password.Any(x=> CharSets.AlphaUpper.Contains(x)))
+                return false;
+
+            if(settings.IncludeSymbolSetNormal && !password.Any(x=> CharSets.CommonSymbols.Contains(x)))
+                return false;
+
+            if(settings.IncludeSymbolSetExtended && !password.Any(x=> CharSets.UnCommonSymbols.Contains(x)))
+                return false;
+
+            return true;
         }
 
         private static string GetCombinedCharSet(IPasswordSettings settings)

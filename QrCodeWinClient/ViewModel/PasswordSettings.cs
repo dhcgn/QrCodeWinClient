@@ -5,8 +5,6 @@ namespace QrCodeWinClient
 {
     public class PasswordSettings : ViewModelBase, IPasswordSettings
     {
-        
-
         public PasswordSettings()
         {
             if (this.IsInDesignMode)
@@ -20,6 +18,12 @@ namespace QrCodeWinClient
             }
             else
             {
+                this.Length = 12;
+                this.ForceEach = true;
+
+                this.IncludeNumeric = true;
+                this.IncludeAlphaLower = true;
+                this.IncludeAlphaUpper = true;
             }
         }
 

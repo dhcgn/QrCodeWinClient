@@ -15,7 +15,7 @@ namespace QrCodeWinClient.Export.Test
         {
             var input = "Hello World";
 
-            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
+            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 1, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
             var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
@@ -27,7 +27,7 @@ namespace QrCodeWinClient.Export.Test
         {
             var input = "65494981";
 
-            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
+            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 1, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
             var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
@@ -40,7 +40,7 @@ namespace QrCodeWinClient.Export.Test
         {
             var input = "Köln Düsseldorf";
 
-            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
+            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 1, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
             var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
@@ -52,7 +52,7 @@ namespace QrCodeWinClient.Export.Test
         {
             var input = @"Köln Düsseldorf 7m5*847OT6%YqMJGU#|,v\4w#e!\dp öäüÄÖÜ \@€";
 
-            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 12, new SolidBrush(Color.Black), new SolidBrush(Color.White));
+            var bitmapImage = QrCodeExporter.Export(Common.ErrorCorrectionLevel.M, input, 1, new SolidBrush(Color.Black), new SolidBrush(Color.White));
 
             var output = QrCodeUtils.GetStringFromQrCode(bitmapImage);
 
