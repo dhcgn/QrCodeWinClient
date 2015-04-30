@@ -12,6 +12,7 @@
         <Setter Property="MinHeight" Value="150" />
         <Setter Property="AcceptsReturn" Value="True" />
         <Setter Property="FontFamily" Value="Consolas" />
+        <Setter Property="Margin" Value="1,0,1,0" />
     </Style>
 
 </ResourceDictionary>

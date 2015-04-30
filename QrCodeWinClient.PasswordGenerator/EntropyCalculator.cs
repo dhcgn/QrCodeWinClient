@@ -20,18 +20,18 @@ namespace QrCodeWinClient.PasswordGenerator
             {
                 switch (digitType)
                 {
-                    case CharSets.DigitTypes.Numeric:
-                        passwordCardinality += CharSets.Numbers.Length;
+                    case CharSets.DigitTypes.Numerics:
+                        passwordCardinality += CharSets.Numerics.Length;
                         break;
-                    case CharSets.DigitTypes.LowerCase:
-                    case CharSets.DigitTypes.UpperCase:
+                    case CharSets.DigitTypes.AlphaLower:
+                    case CharSets.DigitTypes.AlphaUpper:
                         passwordCardinality += CharSets.AlphaUpper.Length;
                         break;
                     case CharSets.DigitTypes.SymbolCommon:
-                        passwordCardinality += CharSets.CommonSymbols.Length;
+                        passwordCardinality += CharSets.SymbolCommon.Length;
                         break;
                     case CharSets.DigitTypes.SymbolUnCommon:
-                        passwordCardinality += CharSets.UnCommonSymbols.Length;
+                        passwordCardinality += CharSets.SymbolUnCommon.Length;
                         break;
                 }
             }
@@ -49,19 +49,19 @@ namespace QrCodeWinClient.PasswordGenerator
         {
             var result = new List<CharSets.DigitTypes>();
 
-            if (password.Any(c => CharSets.Numbers.Contains(c)))
-                result.Add(CharSets.DigitTypes.Numeric);
+            if (password.Any(c => CharSets.Numerics.Contains(c)))
+                result.Add(CharSets.DigitTypes.Numerics);
 
             if (password.Any(c => CharSets.AlphaLower.Contains(c)))
-                result.Add(CharSets.DigitTypes.LowerCase);
+                result.Add(CharSets.DigitTypes.AlphaLower);
 
             if (password.Any(c => CharSets.AlphaUpper.Contains(c)))
-                result.Add(CharSets.DigitTypes.UpperCase);
+                result.Add(CharSets.DigitTypes.AlphaUpper);
 
-            if (password.Any(c => CharSets.CommonSymbols.Contains(c)))
+            if (password.Any(c => CharSets.SymbolCommon.Contains(c)))
                 result.Add(CharSets.DigitTypes.SymbolCommon);
 
-            if (password.Any(c => CharSets.UnCommonSymbols.Contains(c)))
+            if (password.Any(c => CharSets.SymbolUnCommon.Contains(c)))
                 result.Add(CharSets.DigitTypes.SymbolUnCommon);
 
             return result;
@@ -72,13 +72,13 @@ namespace QrCodeWinClient.PasswordGenerator
             var result = new List<CharSets.DigitTypes>();
 
             if (settings.IncludeNumeric)
-                result.Add(CharSets.DigitTypes.Numeric);
+                result.Add(CharSets.DigitTypes.Numerics);
 
             if (settings.IncludeAlphaLower)
-                result.Add(CharSets.DigitTypes.LowerCase);
+                result.Add(CharSets.DigitTypes.AlphaLower);
 
             if (settings.IncludeAlphaUpper)
-                result.Add(CharSets.DigitTypes.UpperCase);
+                result.Add(CharSets.DigitTypes.AlphaUpper);
 
             if (settings.IncludeSymbolSetNormal)
                 result.Add(CharSets.DigitTypes.SymbolCommon);

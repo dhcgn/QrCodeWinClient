@@ -2,6 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="String/StringResources.xaml" />
+        
         <ResourceDictionary Source="Converters/Converter.xaml" />
 
         <ResourceDictionary Source="BitmapGraphics/BitmapGraphics.xaml" />
@@ -11,5 +13,6 @@
         <ResourceDictionary Source="Styles/TextBox.xaml" />
         <ResourceDictionary Source="Styles/Button.xaml" />
         <ResourceDictionary Source="Styles/CheckBox.xaml" />
+        <ResourceDictionary Source="Styles/Image.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

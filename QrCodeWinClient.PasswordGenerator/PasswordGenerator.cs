@@ -44,7 +44,7 @@ namespace QrCodeWinClient.PasswordGenerator
 
         private static bool ContainsAllCharSets(IPasswordSettings settings, string password)
         {
-            if(settings.IncludeNumeric && !password.Any(x=> CharSets.Numbers.Contains(x)))
+            if(settings.IncludeNumeric && !password.Any(x=> CharSets.Numerics.Contains(x)))
                 return false;
 
             if(settings.IncludeAlphaLower && !password.Any(x=> CharSets.AlphaLower.Contains(x)))
@@ -53,10 +53,10 @@ namespace QrCodeWinClient.PasswordGenerator
             if(settings.IncludeAlphaUpper && !password.Any(x=> CharSets.AlphaUpper.Contains(x)))
                 return false;
 
-            if(settings.IncludeSymbolSetNormal && !password.Any(x=> CharSets.CommonSymbols.Contains(x)))
+            if(settings.IncludeSymbolSetNormal && !password.Any(x=> CharSets.SymbolCommon.Contains(x)))
                 return false;
 
-            if(settings.IncludeSymbolSetExtended && !password.Any(x=> CharSets.UnCommonSymbols.Contains(x)))
+            if(settings.IncludeSymbolSetExtended && !password.Any(x=> CharSets.SymbolUnCommon.Contains(x)))
                 return false;
 
             return true;
@@ -67,7 +67,7 @@ namespace QrCodeWinClient.PasswordGenerator
             string result = String.Empty;
 
             if (settings.IncludeNumeric)
-                result += CharSets.Numbers;
+                result += CharSets.Numerics;
 
             if (settings.IncludeAlphaLower)
                 result += CharSets.AlphaLower;
@@ -76,10 +76,10 @@ namespace QrCodeWinClient.PasswordGenerator
                 result += CharSets.AlphaUpper;
 
             if (settings.IncludeSymbolSetNormal)
-                result += CharSets.CommonSymbols;
+                result += CharSets.SymbolCommon;
 
             if (settings.IncludeSymbolSetExtended)
-                result += CharSets.UnCommonSymbols;
+                result += CharSets.SymbolUnCommon;
 
             return result;
         }

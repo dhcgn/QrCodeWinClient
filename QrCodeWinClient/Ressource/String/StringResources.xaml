@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <system:String x:Key="LocalizationAppName">QrCode Generator</system:String>
+    
+    <system:String x:Key="LocalizationOptionPasswordExpander">Password Options</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeExpander">QrCode Options</system:String>
+    
+    <system:String x:Key="LocalizationOptionQrCodeModuleSizeLabel">ModuleSize</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeModuleSizeToolTip">Size of pixel per field</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeErrorLevelLabel">ErrorLevel</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeErrorLevelToolTip">Error correction level, Low (7%), Medium (15%), Quartile (25%) or High (30%)</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeDarkBrushLabel">DarkBrush</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeDarkBrushToolTip">Foreground color, generally white.</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeLightBrushLabel">LightBrush</system:String>
+    <system:String x:Key="LocalizationOptionQrCodeLightBrushToolTip">Background color, generally black.</system:String>
+    
+    <system:String x:Key="LocalizationOptionPasswordIncludeNumericToolTip">Include numbers in password</system:String>
+    <system:String x:Key="LocalizationOptionPasswordIncludeAlphaLowerToolTip">Include lowercase characters in password</system:String>
+    <system:String x:Key="LocalizationOptionPasswordIncludeAlphaUpperToolTip">Include uppercase characters in password</system:String>
+    <system:String x:Key="LocalizationOptionPasswordIncludeSymbolSetNormalToolTip">Include special characters in password</system:String>
+    <system:String x:Key="LocalizationOptionPasswordIncludeSymbolSetExtendedToolTip">Include more special characters in password</system:String>
+    <system:String x:Key="LocalizationOptionPasswordIncludeUmlauteToolTip">Include umlaut characters in password</system:String>
+    
+    <system:String x:Key="LocalizationOptionPasswordLengthToolTip">Set the password length, set higher number for higher entropy</system:String>
+   
+    <system:String x:Key="LocalizationOptionPasswordForceEachToolTip">Force each included character in password, this will ensure the password entropy</system:String>
+    
+    <system:String x:Key="LocalizationOptionPasswordExcludeSimilarToolTip">Exclude similar characters in password</system:String>
+    
+    <system:String x:Key="LocalizationOptionPasswordEntropyToolTip">Show calculated entropy from settings (SOLL) and real entropy from input (IST)</system:String>
+    
+    <system:String x:Key="LocalizationCommandsGeneratePasswordToolTip">Generate a new password</system:String>
+    <system:String x:Key="LocalizationCommandsGeneratePasswordButton">New Password</system:String>
+    
+    <system:String x:Key="LocalizationCommandsCopyQrCodeToClipboardToolTip">Copy QrCode to clipboard</system:String>
+    <system:String x:Key="LocalizationCommandsSaveQrCodeToLibraryToolTip">Save QrCode to picture library</system:String>
+    <system:String x:Key="LocalizationCommandsSaveQrCodeDialogToolTip">Save QrCode to FileSystem</system:String>
+    
+</ResourceDictionary>

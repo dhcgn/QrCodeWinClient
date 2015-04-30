@@ -82,5 +82,20 @@ namespace QrCodeWinClient
             get { return this.includeSymbolSetExtended; }
             set { base.Set(ref this.includeSymbolSetExtended, value); }
         }
+
+        private bool includeUmlaute;
+
+        public bool IncludeUmlaute
+        {
+            get { return this.includeUmlaute; }
+            set { base.Set(ref this.includeUmlaute, value); }
+        }
+        private bool excludeSimilar;
+
+        public bool ExcludeSimilar
+        {
+            get { return this.excludeSimilar; }
+            set { base.Set(ref this.excludeSimilar, value); }
+        }
     }
 }

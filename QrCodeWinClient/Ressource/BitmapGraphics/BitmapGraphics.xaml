@@ -3,5 +3,10 @@
 
     <BitmapImage x:Key="EmptyQrCodeImageSource" UriSource="EmptyQrCode.png" />
     <BitmapImage x:Key="LogoImageSource" UriSource="Logo.png" />
+    
+    <BitmapImage x:Key="FolderImageSource" UriSource="Folder-100.png" />
+    <BitmapImage x:Key="RestartImageSource" UriSource="Restart-100.png" />
+    <BitmapImage x:Key="SaveImageSource" UriSource="Save-100.png" />
+    <BitmapImage x:Key="ShareImageSource" UriSource="Share-100.png" />
 
 </ResourceDictionary>

@@ -8,4 +8,10 @@
         <Setter Property="Height" Value="15" />
     </Style>
 
+    <Style x:Key="ButtonCommandStyle" TargetType="Button">
+        <Setter Property="Background" Value="White" />
+        <Setter Property="Margin" Value="5,5,0,5" />
+        <Setter Property="Padding" Value="5" />
+    </Style>
+
 </ResourceDictionary>
