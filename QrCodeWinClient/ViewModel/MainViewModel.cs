@@ -18,7 +18,7 @@ namespace QrCodeWinClient
 {
     public class MainViewModel : ViewModelBase
     {
-        #region
+        #region Commands
 
         public RelayCommand CopyQRCodeToClipboardCommand { get; set; }
         public RelayCommand SaveQRCodeToLibraryCommand { get; set; }
@@ -43,7 +43,7 @@ namespace QrCodeWinClient
                 }
                 else
                 {
-                    this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.QrSettings));
+                    this.MessengerInstance.Send(new QrCodeRequestMessage(value, this.QrSettingsViewModel));
                     this.RealEntropy = PasswordGenerator.EntropyCalculator.CalcRealEntropy(value);
                 }
 
@@ -59,21 +59,21 @@ namespace QrCodeWinClient
             set { this.Set(ref this.qrCodeImage, value); }
         }
 
-        private QrCodeSettings qrSettings;
+        private QrCodeSettingsViewModel qrSettingsViewModel;
 
-        public QrCodeSettings QrSettings
+        public QrCodeSettingsViewModel QrSettingsViewModel
         {
-            get { return this.qrSettings; }
-            set { this.Set(ref this.qrSettings, value); }
+            get { return this.qrSettingsViewModel; }
+            set { this.Set(ref this.qrSettingsViewModel, value); }
         }
 
-        private PasswordSettings passwordSettings;
+        private PasswordSettingsViewModel passwordSettingsViewModel;
         
 
-        public PasswordSettings PasswordSettings
+        public PasswordSettingsViewModel PasswordSettingsViewModel
         {
-            get { return this.passwordSettings; }
-            set { this.Set(ref this.passwordSettings, value); }
+            get { return this.passwordSettingsViewModel; }
+            set { this.Set(ref this.passwordSettingsViewModel, value); }
         }
 
         public IEnumerable<ErrorCorrectionLevel> ErrorCorrectionLevels
@@ -99,6 +99,8 @@ namespace QrCodeWinClient
 
         #endregion
 
+        #region .ctor
+
         /// <summary>
         /// Initializes a new instance of the MainViewModel class.
         /// </summary>
@@ -106,8 +108,8 @@ namespace QrCodeWinClient
         {
             if (this.IsInDesignMode)
             {
-                this.QrSettings = new QrCodeSettings();
-                this.PasswordSettings = new PasswordSettings();
+                this.QrSettingsViewModel = new QrCodeSettingsViewModel();
+                this.PasswordSettingsViewModel = new PasswordSettingsViewModel();
 
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 
@@ -121,15 +123,15 @@ namespace QrCodeWinClient
                 ExportInstance.Instance.Init();
                 this.MessengerInstance.Register<QrCodeResponseMessage>(this, this.ReveiceQRCode);
 
-                this.QrSettings = new QrCodeSettings();
-                this.QrSettings.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettings));
+                this.QrSettingsViewModel = new QrCodeSettingsViewModel();
+                this.QrSettingsViewModel.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettingsViewModel));
 
-                this.PasswordSettings = new PasswordSettings();
-                this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettings);
-                this.PasswordSettings.PropertyChanged += (sender, args) =>
+                this.PasswordSettingsViewModel = new PasswordSettingsViewModel();
+                this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettingsViewModel);
+                this.PasswordSettingsViewModel.PropertyChanged += (sender, args) =>
                 {
                     this.GeneratePasswordCommand.RaiseCanExecuteChanged();
-                    this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettings);
+                    this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettingsViewModel);
                 };
 
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
@@ -137,13 +139,17 @@ namespace QrCodeWinClient
                 SaveQRCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
                 SaveQRCodeDialogCommand = new RelayCommand(SaveQRCodeDialog);
                 CopyQRCodeToClipboardCommand = new RelayCommand(CopyQRCodeToClipboard);
-                GeneratePasswordCommand = new RelayCommand(GeneratePassword, ()=>PasswordSettings.IsValid());
+                GeneratePasswordCommand = new RelayCommand(GeneratePassword, ()=>this.PasswordSettingsViewModel.IsValid());
             }
         }
 
+        #endregion
+
+        #region Command Handling
+
         private void GeneratePassword()
         {
-            this.InputText = PasswordGenerator.PasswordGenerator.Generate(this.PasswordSettings);
+            this.InputText = PasswordGenerator.PasswordGenerator.Generate(this.PasswordSettingsViewModel);
         }
 
         private void SaveQRCodeToLibrary()
@@ -171,10 +177,15 @@ namespace QrCodeWinClient
             Clipboard.SetImage(this.QrCodeImage);
         }
 
+        #endregion
+
+        #region Message Handling
 
         private void ReveiceQRCode(QrCodeResponseMessage qrCodeResponseMessage)
         {
             this.QrCodeImage = qrCodeResponseMessage.QrCodeImage;
         }
+
+        #endregion
     }
 }

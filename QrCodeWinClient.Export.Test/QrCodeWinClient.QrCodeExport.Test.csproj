@@ -63,7 +63,7 @@
   <ItemGroup>
     <Compile Include="QrCodeGenerator.cs" />
     <Compile Include="QrCodeTechnicalTests.cs" />
-    <Compile Include="QrCodeUtils.cs" />
+    <Compile Include="TestUtils\QrCodeUtils.cs" />
     <Compile Include="SimpleQrCodeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

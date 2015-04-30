@@ -4,9 +4,9 @@ using QrCodeWinClient.Common;
 
 namespace QrCodeWinClient
 {
-    public class QrCodeSettings : ViewModelBase, IQrCodeSettings
+    public class QrCodeSettingsViewModel : ViewModelBase, IQrCodeSettings
     {
-        public QrCodeSettings()
+        public QrCodeSettingsViewModel()
         {
             this.ErrorCorrectionLevel = ErrorCorrectionLevel.M;
             this.ModuleSize = 1;

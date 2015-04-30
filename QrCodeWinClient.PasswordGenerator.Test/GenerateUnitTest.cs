@@ -9,7 +9,7 @@ namespace QrCodeWinClient.PasswordGenerator.Test
         [TestMethod]
         public void SimpleTest()
         {
-            var result = PasswordGenerator.Generate(Helper.GetPasswordSettings());
+            var result = PasswordGenerator.Generate(TestUtils.GetPasswordSettings());
 
             Assert.IsFalse(String.IsNullOrEmpty(result));
         }

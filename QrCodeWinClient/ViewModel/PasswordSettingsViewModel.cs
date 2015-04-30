@@ -3,9 +3,9 @@ using QrCodeWinClient.Common;
 
 namespace QrCodeWinClient
 {
-    public class PasswordSettings : ViewModelBase, IPasswordSettings
+    public class PasswordSettingsViewModel : ViewModelBase, IPasswordSettings
     {
-        public PasswordSettings()
+        public PasswordSettingsViewModel()
         {
             if (this.IsInDesignMode)
             {

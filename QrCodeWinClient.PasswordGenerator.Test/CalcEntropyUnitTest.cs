@@ -9,7 +9,7 @@ namespace QrCodeWinClient.PasswordGenerator.Test
         [TestMethod]
         public void SimpleTest()
         {
-            var result = PasswordGenerator.CalcEntropy(Helper.GetPasswordSettings());
+            var result = PasswordGenerator.CalcEntropy(TestUtils.GetPasswordSettings());
 
             Assert.AreNotEqual(0, result);
         }

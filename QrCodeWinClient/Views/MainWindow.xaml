@@ -52,25 +52,25 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="ModuleSize" Style="{StaticResource TextBlockOptionStyle}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding QrSettings.ModuleSize, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding QrSettingsViewModel.ModuleSize, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource TextBoxOptionStyle}" />
 
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="ErrorLevel"
                                Style="{StaticResource TextBlockOptionStyle}" />
-                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding QrSettings.ErrorCorrectionLevel}"
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding QrSettingsViewModel.ErrorCorrectionLevel}"
                               ItemsSource="{Binding ErrorCorrectionLevels}"
                               Style="{StaticResource ComboBoxOptionStyle}" />
 
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="DarkBrush"
                                Style="{StaticResource TextBlockOptionStyle}" />
                     <Button Grid.Row="0" Grid.Column="3"
-                            Background="{Binding QrSettings.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
+                            Background="{Binding QrSettingsViewModel.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
                             Style="{StaticResource ButtonColorSelectorOptionStyle}" />
 
                     <TextBlock Grid.Row="1" Grid.Column="2" Text="LightBrush"
                                Style="{StaticResource TextBlockOptionStyle}" />
                     <Button Grid.Row="1" Grid.Column="3"
-                            Background="{Binding QrSettings.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
+                            Background="{Binding QrSettingsViewModel.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
                             Style="{StaticResource ButtonColorSelectorOptionStyle}" />
 
                 </Grid>
@@ -92,11 +92,11 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="Length" Style="{StaticResource TextBlockOptionStyle}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PasswordSettings.Length, UpdateSourceTrigger=PropertyChanged}"
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding PasswordSettingsViewModel.Length, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource TextBoxOptionStyle}" />
 
                     <CheckBox Grid.Row="0" Grid.Column="2" Content="force each"
-                              IsChecked="{Binding PasswordSettings.ForceEach}"
+                              IsChecked="{Binding PasswordSettingsViewModel.ForceEach}"
                               Style="{StaticResource CheckBoxOptionStyle}" />
 
                     <StackPanel Grid.Row="0" Grid.Column="3">
@@ -112,19 +112,19 @@
                     <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Orientation="Horizontal">
 
                         <CheckBox Content="N" Style="{StaticResource CheckBoxOptionStyle}"
-                                  IsChecked="{Binding PasswordSettings.IncludeNumeric}" />
+                                  IsChecked="{Binding PasswordSettingsViewModel.IncludeNumeric}" />
 
                         <CheckBox Content="a" Style="{StaticResource CheckBoxOptionStyle}"
-                                  IsChecked="{Binding PasswordSettings.IncludeAlphaLower}" />
+                                  IsChecked="{Binding PasswordSettingsViewModel.IncludeAlphaLower}" />
 
                         <CheckBox Content="A" Style="{StaticResource CheckBoxOptionStyle}"
-                                  IsChecked="{Binding PasswordSettings.IncludeAlphaUpper}" />
+                                  IsChecked="{Binding PasswordSettingsViewModel.IncludeAlphaUpper}" />
 
                         <CheckBox Content="S1" Style="{StaticResource CheckBoxOptionStyle}"
-                                  IsChecked="{Binding PasswordSettings.IncludeSymbolSetNormal}" />
+                                  IsChecked="{Binding PasswordSettingsViewModel.IncludeSymbolSetNormal}" />
 
                         <CheckBox Content="S2" Style="{StaticResource CheckBoxOptionStyle}"
-                                  IsChecked="{Binding PasswordSettings.IncludeSymbolSetExtended}" />
+                                  IsChecked="{Binding PasswordSettingsViewModel.IncludeSymbolSetExtended}" />
                     </StackPanel>
                 </Grid>
             </Expander>

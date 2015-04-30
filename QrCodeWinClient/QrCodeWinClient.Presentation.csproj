@@ -27,7 +27,7 @@
     <InstallUrl>http://software.dhcgn.de/QrCodeWinClient/</InstallUrl>
     <CreateWebPageOnPublish>true</CreateWebPageOnPublish>
     <WebPage>index.html</WebPage>
-    <ApplicationRevision>3</ApplicationRevision>
+    <ApplicationRevision>4</ApplicationRevision>
     <ApplicationVersion>0.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,8 +118,8 @@
     </ApplicationDefinition>
     <Compile Include="Ressource\Converters\BrushToSolidBrushConverter.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\PasswordSettings.cs" />
-    <Compile Include="ViewModel\QrCodeSettings.cs" />
+    <Compile Include="ViewModel\PasswordSettingsViewModel.cs" />
+    <Compile Include="ViewModel\QrCodeSettingsViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
     <Page Include="Ressource\BitmapGraphics\BitmapGraphics.xaml">
       <SubType>Designer</SubType>
