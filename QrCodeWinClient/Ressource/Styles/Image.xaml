@@ -3,6 +3,7 @@
 
     <Style x:Key="CommandImageStyle" TargetType="Image">
         <Setter Property="Height" Value="15" />
+        <Setter Property="Width" Value="15" />
         <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality" />
     </Style>
 

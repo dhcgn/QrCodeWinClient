@@ -7,6 +7,10 @@
     <system:String x:Key="LocalizationOptionPasswordExpander">Password Options</system:String>
     <system:String x:Key="LocalizationOptionQrCodeExpander">QrCode Options</system:String>
     
+    <system:String x:Key="LocalizationQrCodeContextClipboard">to Clipboard</system:String>
+    <system:String x:Key="LocalizationQrCodeContextLibrary">to Library</system:String>
+    <system:String x:Key="LocalizationQrCodeContextLocation">to Location</system:String>
+    
     <system:String x:Key="LocalizationOptionQrCodeModuleSizeLabel">ModuleSize</system:String>
     <system:String x:Key="LocalizationOptionQrCodeModuleSizeToolTip">Size of pixel per field</system:String>
     <system:String x:Key="LocalizationOptionQrCodeErrorLevelLabel">ErrorLevel</system:String>

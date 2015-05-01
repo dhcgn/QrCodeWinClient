@@ -10,9 +10,9 @@
         DataContext="{Binding Source={StaticResource Locator}, Path=Main}">
 
     <Window.InputBindings>
-        <KeyBinding Key="C" Modifiers="Control" Command="{Binding CopyQRCodeToClipboardCommand}" />
-        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveQRCodeToLibraryCommand}" />
-        <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveQRCodeDialogCommand}" />
+        <KeyBinding Key="C" Modifiers="Control" Command="{Binding CopyQrCodeToClipboardCommand}" />
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding SaveQrCodeToLibraryCommand}" />
+        <KeyBinding Key="S" Modifiers="Control+Shift" Command="{Binding SaveQrCodeDialogCommand}" />
     </Window.InputBindings>
 
     <Grid>
@@ -24,15 +24,37 @@
         </Grid.RowDefinitions>
 
         <!-- QrCode -->
-        <Image Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform"
-               RenderOptions.BitmapScalingMode="NearestNeighbor">
-            <Image.ContextMenu>
+        <Border Background="Transparent" Panel.ZIndex="1">
+            <Border.ContextMenu>
                 <ContextMenu>
-                    <MenuItem Header="to Clipboard" Command="{Binding CopyQRCodeToClipboardCommand}" />
-                    <MenuItem Header="to Library" Command="{Binding SaveQRCodeToLibraryCommand}" />
-                    <MenuItem Header="to Location" Command="{Binding SaveQRCodeDialogCommand}" />
+                    <MenuItem Header="{StaticResource LocalizationQrCodeContextClipboard}"
+                              Command="{Binding CopyQrCodeToClipboardCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="{StaticResource ShareImageSource}"
+                                   Style="{StaticResource CommandImageStyle}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{StaticResource LocalizationQrCodeContextLibrary}"
+                              Command="{Binding SaveQrCodeToLibraryCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="{StaticResource FolderImageSource}"
+                                   Style="{StaticResource CommandImageStyle}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
+                    <MenuItem Header="{StaticResource LocalizationQrCodeContextLocation}"
+                              Command="{Binding SaveQrCodeDialogCommand}">
+                        <MenuItem.Icon>
+                            <Image Source="{StaticResource SaveImageSource}"
+                                   Style="{StaticResource CommandImageStyle}" />
+                        </MenuItem.Icon>
+                    </MenuItem>
                 </ContextMenu>
-            </Image.ContextMenu>
+            </Border.ContextMenu>
+        </Border>
+        
+        <Image Grid.Row="0" Source="{Binding QrCodeImage}" Margin="5" MinHeight="120" Stretch="Uniform"
+               RenderOptions.BitmapScalingMode="NearestNeighbor">
+            
         </Image>
 
         <!-- Options -->
@@ -205,27 +227,24 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Style="{StaticResource ButtonCommandStyle}"
-                            Command="{Binding CopyQRCodeToClipboardCommand}"
+                            Command="{Binding CopyQrCodeToClipboardCommand}"
                             ToolTip="{StaticResource LocalizationCommandsCopyQrCodeToClipboardToolTip}">
                         <Image Source="{StaticResource ShareImageSource}" Style="{StaticResource CommandImageStyle}" />
                     </Button>
 
                     <Button Grid.Column="1" Style="{StaticResource ButtonCommandStyle}"
-                            Command="{Binding SaveQRCodeToLibraryCommand}"
+                            Command="{Binding SaveQrCodeToLibraryCommand}"
                             ToolTip="{StaticResource LocalizationCommandsSaveQrCodeToLibraryToolTip}">
                         <Image Source="{StaticResource FolderImageSource}" Style="{StaticResource CommandImageStyle}" />
                     </Button>
 
                     <Button Grid.Column="2" Margin="5,5,5,5" Style="{StaticResource ButtonCommandStyle}"
-                            Command="{Binding SaveQRCodeDialogCommand}"
+                            Command="{Binding SaveQrCodeDialogCommand}"
                             ToolTip="{StaticResource LocalizationCommandsSaveQrCodeDialogToolTip}">
                         <Image Source="{StaticResource SaveImageSource}" Style="{StaticResource CommandImageStyle}" />
                     </Button>
                 </Grid>
-
-
             </Grid>
         </Grid>
-
     </Grid>
 </Window>

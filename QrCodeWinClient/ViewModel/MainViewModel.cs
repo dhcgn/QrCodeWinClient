@@ -20,9 +20,9 @@ namespace QrCodeWinClient
     {
         #region Commands
 
-        public RelayCommand CopyQRCodeToClipboardCommand { get; set; }
-        public RelayCommand SaveQRCodeToLibraryCommand { get; set; }
-        public RelayCommand SaveQRCodeDialogCommand { get; set; }
+        public RelayCommand CopyQrCodeToClipboardCommand { get; set; }
+        public RelayCommand SaveQrCodeToLibraryCommand { get; set; }
+        public RelayCommand SaveQrCodeDialogCommand { get; set; }
         public RelayCommand GeneratePasswordCommand { get; set; }
 
         #endregion
@@ -136,9 +136,9 @@ namespace QrCodeWinClient
 
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 
-                SaveQRCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
-                SaveQRCodeDialogCommand = new RelayCommand(SaveQRCodeDialog);
-                CopyQRCodeToClipboardCommand = new RelayCommand(CopyQRCodeToClipboard);
+                this.SaveQrCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
+                this.SaveQrCodeDialogCommand = new RelayCommand(SaveQRCodeDialog);
+                this.CopyQrCodeToClipboardCommand = new RelayCommand(CopyQRCodeToClipboard);
                 GeneratePasswordCommand = new RelayCommand(GeneratePassword, ()=>this.PasswordSettingsViewModel.IsValid());
             }
         }
