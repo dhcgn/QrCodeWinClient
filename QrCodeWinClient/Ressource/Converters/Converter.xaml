@@ -3,5 +3,6 @@
                     xmlns:local="clr-namespace:QrCodeWinClient">
 
     <local:BrushToSolidBrushConverter x:Key="BrushToSolidBrushConverter" />
+    <local:ColorToSolidBrushConverter x:Key="ColorToSolidBrushConverter" />
 
 </ResourceDictionary>

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:QrCodeWinClient"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="{StaticResource LocalizationAppName}" Height="480" Width="265"
         Icon="{StaticResource LogoImageSource}"
@@ -95,20 +96,25 @@
                                Text="{StaticResource LocalizationOptionQrCodeDarkBrushLabel}"
                                ToolTip="{StaticResource LocalizationOptionQrCodeDarkBrushToolTip}"
                                Style="{StaticResource TextBlockOptionStyle}" />
-                    <Button Grid.Row="0" Grid.Column="3"
+                    
+                    <!--<Button Grid.Row="0" Grid.Column="3"
                             Background="{Binding QrSettingsViewModel.DarkBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
                             ToolTip="{StaticResource LocalizationOptionQrCodeDarkBrushToolTip}"
-                            Style="{StaticResource ButtonColorSelectorOptionStyle}" />
+                            Style="{StaticResource ButtonColorSelectorOptionStyle}" />-->
+                    <xctk:ColorPicker Grid.Row="0" Grid.Column="3" SelectedColor="{Binding QrSettingsViewModel.DarkBrush, Converter={StaticResource ColorToSolidBrushConverter}}"></xctk:ColorPicker>
+                    
 
                     <TextBlock Grid.Row="1" Grid.Column="2"
                                Text="{StaticResource LocalizationOptionQrCodeLightBrushLabel}"
                                ToolTip="{StaticResource LocalizationOptionQrCodeLightBrushToolTip}"
                                Style="{StaticResource TextBlockOptionStyle}" />
-                    <Button Grid.Row="1" Grid.Column="3"
+                    <!--<Button Grid.Row="1" Grid.Column="3"
                             Background="{Binding QrSettingsViewModel.LightBrush, Converter={StaticResource BrushToSolidBrushConverter}}"
                             ToolTip="{StaticResource LocalizationOptionQrCodeLightBrushToolTip}"
-                            Style="{StaticResource ButtonColorSelectorOptionStyle}" />
-
+                            Style="{StaticResource ButtonColorSelectorOptionStyle}" />-->
+                    
+                    <xctk:ColorPicker Grid.Row="1" Grid.Column="3" SelectedColor="{Binding QrSettingsViewModel.LightBrush, Converter={StaticResource ColorToSolidBrushConverter}}" ColorMode="ColorCanvas"></xctk:ColorPicker>
+                    
                 </Grid>
 
             </Expander>
