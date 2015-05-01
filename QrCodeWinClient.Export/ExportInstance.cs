@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 using GalaSoft.MvvmLight.Messaging;
 using QrCodeWinClient.Common;
 
@@ -20,12 +21,17 @@ namespace QrCodeWinClient.Export
 
         private void StartQrCodeGeneration(QrCodeRequestMessage message)
         {
-            var qrCodeImage = QrCodeExporter.Export(
-                message.Settings.ErrorCorrectionLevel,
-                message.Value,
-                message.Settings.ModuleSize,
-                message.Settings.DarkBrush,
-                message.Settings.LightBrush);
+            BitmapImage qrCodeImage = null;
+
+            if (!String.IsNullOrEmpty(message.Value))
+            {
+                qrCodeImage = QrCodeExporter.Export(
+                    message.Settings.ErrorCorrectionLevel,
+                    message.Value,
+                    message.Settings.ModuleSize,
+                    message.Settings.DarkBrush,
+                    message.Settings.LightBrush);
+            }
 
             Messenger.Default.Send<QrCodeResponseMessage>(new QrCodeResponseMessage() {QrCodeImage = qrCodeImage});
         }

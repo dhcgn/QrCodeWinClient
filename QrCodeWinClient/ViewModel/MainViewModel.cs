@@ -183,7 +183,15 @@ namespace QrCodeWinClient
 
         private void ReveiceQRCode(QrCodeResponseMessage qrCodeResponseMessage)
         {
-            this.QrCodeImage = qrCodeResponseMessage.QrCodeImage;
+            var bitmapImage = qrCodeResponseMessage.QrCodeImage;
+            if (bitmapImage != null)
+            {
+                this.QrCodeImage = bitmapImage;
+            }
+            else
+            {
+                this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
+            }
         }
 
         #endregion
