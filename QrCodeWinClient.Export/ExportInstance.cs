@@ -14,6 +14,23 @@ namespace QrCodeWinClient.Export
         private static volatile ExportInstance instance;
         private static object syncRoot = new Object();
 
+        public static ExportInstance Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (instance == null)
+                            instance = new ExportInstance();
+                    }
+                }
+
+                return instance;
+            }
+        }
+
         private ExportInstance()
         {
             Messenger.Default.Register<QrCodeRequestMessage>(this, this.StartQrCodeGeneration);
@@ -34,23 +51,6 @@ namespace QrCodeWinClient.Export
             }
 
             Messenger.Default.Send<QrCodeResponseMessage>(new QrCodeResponseMessage() {QrCodeImage = qrCodeImage});
-        }
-
-        public static ExportInstance Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    lock (syncRoot)
-                    {
-                        if (instance == null)
-                            instance = new ExportInstance();
-                    }
-                }
-
-                return instance;
-            }
         }
 
         public void Init()

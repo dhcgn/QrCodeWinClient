@@ -15,6 +15,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrCodeWinClient.PasswordGen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrCodeWinClient.PasswordGenerator.Test", "QrCodeWinClient.PasswordGenerator.Test\QrCodeWinClient.PasswordGenerator.Test.csproj", "{A25F0F4B-BE67-4961-A379-949CC2355BEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrCodeWinClient.Persistence", "QrCodeWinClient.Persistence\QrCodeWinClient.Persistence.csproj", "{D4847111-95BA-412C-8571-843D76E87A8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QrCodeWinClient.Persistence.Test", "QrCodeWinClient.Persistence.Test\QrCodeWinClient.Persistence.Test.csproj", "{50CF8F73-2510-4282-B721-F1B5053D57E7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +49,14 @@ Global
 		{A25F0F4B-BE67-4961-A379-949CC2355BEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A25F0F4B-BE67-4961-A379-949CC2355BEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A25F0F4B-BE67-4961-A379-949CC2355BEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4847111-95BA-412C-8571-843D76E87A8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4847111-95BA-412C-8571-843D76E87A8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4847111-95BA-412C-8571-843D76E87A8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4847111-95BA-412C-8571-843D76E87A8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{50CF8F73-2510-4282-B721-F1B5053D57E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{50CF8F73-2510-4282-B721-F1B5053D57E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{50CF8F73-2510-4282-B721-F1B5053D57E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{50CF8F73-2510-4282-B721-F1B5053D57E7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

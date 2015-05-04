@@ -1,3 +1,5 @@
+using System;
+
 namespace QrCodeWinClient.Common
 {
     public interface IPasswordSettings
@@ -11,8 +13,45 @@ namespace QrCodeWinClient.Common
         bool IncludeSymbolSetExtended { get; set; }
     }
 
+    public class PersistPasswordSettings : IPasswordSettings
+    {
+        public int Length { get; set; }
+        public bool ForceEach { get; set; }
+        public bool IncludeNumeric { get; set; }
+        public bool IncludeAlphaLower { get; set; }
+        public bool IncludeAlphaUpper { get; set; }
+        public bool IncludeSymbolSetNormal { get; set; }
+        public bool IncludeSymbolSetExtended { get; set; }
+    }
+
     public static class MyExtensions
     {
+        public static void OverrideFrom(this IPasswordSettings settings, IPasswordSettings source)
+        {
+            if (settings == null || source == null) return;
+
+            settings.Length = source.Length;
+
+            settings.ForceEach = source.ForceEach;
+            settings.IncludeNumeric = source.IncludeNumeric;
+            settings.IncludeAlphaLower = source.IncludeAlphaLower;
+            settings.IncludeAlphaUpper = source.IncludeAlphaUpper;
+            settings.IncludeSymbolSetNormal = source.IncludeSymbolSetNormal;
+            settings.IncludeSymbolSetExtended = source.IncludeSymbolSetExtended;
+        }
+
+
+        public static void OverrideFrom(this IQrCodeSettings settings, IQrCodeSettings source)
+        {
+            if (settings == null || source == null) return;
+
+            settings.ModuleSize = source.ModuleSize;
+            settings.ErrorCorrectionLevel = source.ErrorCorrectionLevel;
+            settings.DarkBrush = source.DarkBrush;
+            settings.LightBrush = source.LightBrush;
+        }
+
+
         public static bool IsValid(this IPasswordSettings settings)
         {
             if (settings.Length < 1) return false;

@@ -23,7 +23,7 @@ namespace QrCodeWinClient
             if (value == null || !(value is System.Windows.Media.Color)) return null;
             var color = (System.Windows.Media.Color) value;
 
-            return new SolidBrush(System.Drawing.Color.FromArgb(color.A, color.R, color.G, color.B));
+            return new SolidBrush(Color.FromArgb(color.A, color.R, color.G, color.B));
         }
     }
 }

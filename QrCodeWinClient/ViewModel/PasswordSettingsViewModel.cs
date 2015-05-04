@@ -32,7 +32,7 @@ namespace QrCodeWinClient
         public int Length
         {
             get { return this.length; }
-            set { base.Set(ref this.length, value); }
+            set { this.Set(ref this.length, value); }
         }
 
         private bool forceEach;
@@ -40,7 +40,7 @@ namespace QrCodeWinClient
         public bool ForceEach
         {
             get { return this.forceEach; }
-            set { base.Set(ref this.forceEach, value); }
+            set { this.Set(ref this.forceEach, value); }
         }
 
         private bool includeNumeric;
@@ -48,7 +48,7 @@ namespace QrCodeWinClient
         public bool IncludeNumeric
         {
             get { return this.includeNumeric; }
-            set { base.Set(ref this.includeNumeric, value); }
+            set { this.Set(ref this.includeNumeric, value); }
         }
 
         private bool includeAlphaLower;
@@ -56,7 +56,7 @@ namespace QrCodeWinClient
         public bool IncludeAlphaLower
         {
             get { return this.includeAlphaLower; }
-            set { base.Set(ref this.includeAlphaLower, value); }
+            set { this.Set(ref this.includeAlphaLower, value); }
         }
 
         private bool includeAlphaUpper;
@@ -64,7 +64,7 @@ namespace QrCodeWinClient
         public bool IncludeAlphaUpper
         {
             get { return this.includeAlphaUpper; }
-            set { base.Set(ref this.includeAlphaUpper, value); }
+            set { this.Set(ref this.includeAlphaUpper, value); }
         }
 
         private bool includeSymbolSetNormal;
@@ -72,7 +72,7 @@ namespace QrCodeWinClient
         public bool IncludeSymbolSetNormal
         {
             get { return this.includeSymbolSetNormal; }
-            set { base.Set(ref this.includeSymbolSetNormal, value); }
+            set { this.Set(ref this.includeSymbolSetNormal, value); }
         }
 
         private bool includeSymbolSetExtended;
@@ -80,7 +80,7 @@ namespace QrCodeWinClient
         public bool IncludeSymbolSetExtended
         {
             get { return this.includeSymbolSetExtended; }
-            set { base.Set(ref this.includeSymbolSetExtended, value); }
+            set { this.Set(ref this.includeSymbolSetExtended, value); }
         }
 
         private bool includeUmlaute;
@@ -88,14 +88,14 @@ namespace QrCodeWinClient
         public bool IncludeUmlaute
         {
             get { return this.includeUmlaute; }
-            set { base.Set(ref this.includeUmlaute, value); }
+            set { this.Set(ref this.includeUmlaute, value); }
         }
         private bool excludeSimilar;
 
         public bool ExcludeSimilar
         {
             get { return this.excludeSimilar; }
-            set { base.Set(ref this.excludeSimilar, value); }
+            set { this.Set(ref this.excludeSimilar, value); }
         }
     }
 }

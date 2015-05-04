@@ -1,6 +1,8 @@
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using Microsoft.Practices.ServiceLocation;
+using QrCodeWinClient.Export;
+using QrCodeWinClient.Persistence;
 
 namespace QrCodeWinClient
 {
@@ -22,6 +24,9 @@ namespace QrCodeWinClient
             ////}
 
             SimpleIoc.Default.Register<MainViewModel>();
+
+            ExportInstance.Instance.Init();
+            PersistenceManager.Instance.Init();
         }
 
         public MainViewModel Main

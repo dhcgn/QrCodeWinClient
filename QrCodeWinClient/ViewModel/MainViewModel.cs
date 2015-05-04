@@ -68,7 +68,7 @@ namespace QrCodeWinClient
         }
 
         private PasswordSettingsViewModel passwordSettingsViewModel;
-        
+
 
         public PasswordSettingsViewModel PasswordSettingsViewModel
         {
@@ -82,6 +82,7 @@ namespace QrCodeWinClient
         }
 
         private int entropy;
+
         public int Entropy
         {
             get { return this.entropy; }
@@ -89,13 +90,12 @@ namespace QrCodeWinClient
         }
 
         private int realEntropy;
+
         public int RealEntropy
         {
             get { return this.realEntropy; }
             set { this.Set(ref this.realEntropy, value); }
         }
-
-
 
         #endregion
 
@@ -120,11 +120,24 @@ namespace QrCodeWinClient
             }
             else
             {
-                ExportInstance.Instance.Init();
                 this.MessengerInstance.Register<QrCodeResponseMessage>(this, this.ReveiceQRCode);
+                this.MessengerInstance.Register<LoadResponseMessage>(this, this.ProcessLoadMessage);
+
 
                 this.QrSettingsViewModel = new QrCodeSettingsViewModel();
-                this.QrSettingsViewModel.PropertyChanged += (sender, args) => this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettingsViewModel));
+                this.QrSettingsViewModel.PropertyChanged += (sender, args) =>
+                {
+                    this.MessengerInstance.Send(new QrCodeRequestMessage(this.InputText, this.QrSettingsViewModel));
+
+                    if (this.loadedTypes.Contains(typeof (PersistQrCodeSettings)))
+                    {
+                        var persistQrCodeSettings = new PersistQrCodeSettings();
+                        persistQrCodeSettings.OverrideFrom(this.QrSettingsViewModel);
+
+                        this.MessengerInstance.Send(new SaveRequestMessage(persistQrCodeSettings, typeof (PersistQrCodeSettings)));
+                    }
+
+                };
 
                 this.PasswordSettingsViewModel = new PasswordSettingsViewModel();
                 this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettingsViewModel);
@@ -132,15 +145,46 @@ namespace QrCodeWinClient
                 {
                     this.GeneratePasswordCommand.RaiseCanExecuteChanged();
                     this.Entropy = PasswordGenerator.EntropyCalculator.CalcEntropy(this.PasswordSettingsViewModel);
+
+                    if (this.loadedTypes.Contains(typeof (PersistPasswordSettings)))
+                    {
+                        var persistSettings = new PersistPasswordSettings();
+                        persistSettings.OverrideFrom(this.PasswordSettingsViewModel);
+
+                        this.MessengerInstance.Send(new SaveRequestMessage(persistSettings, typeof (PersistPasswordSettings)));
+                    }
                 };
 
                 this.QrCodeImage = Application.Current.Resources["EmptyQrCodeImageSource"] as BitmapImage;
 
-                this.SaveQrCodeToLibraryCommand = new RelayCommand(SaveQRCodeToLibrary);
-                this.SaveQrCodeDialogCommand = new RelayCommand(SaveQRCodeDialog);
-                this.CopyQrCodeToClipboardCommand = new RelayCommand(CopyQRCodeToClipboard);
-                GeneratePasswordCommand = new RelayCommand(GeneratePassword, ()=>this.PasswordSettingsViewModel.IsValid());
+                this.SaveQrCodeToLibraryCommand = new RelayCommand(this.SaveQRCodeToLibrary);
+                this.SaveQrCodeDialogCommand = new RelayCommand(this.SaveQRCodeDialog);
+                this.CopyQrCodeToClipboardCommand = new RelayCommand(this.CopyQRCodeToClipboard);
+                this.GeneratePasswordCommand = new RelayCommand(this.GeneratePassword, () => this.PasswordSettingsViewModel.IsValid());
+
+                this.MessengerInstance.Send(new LoadRequestMessage(typeof (PersistPasswordSettings)));
+                this.MessengerInstance.Send(new LoadRequestMessage(typeof (PersistQrCodeSettings)));
             }
+        }
+
+        private readonly HashSet<Type> loadedTypes = new HashSet<Type>();
+
+        private void ProcessLoadMessage(LoadResponseMessage obj)
+        {
+            if (obj.MyProperty != null)
+            {
+                if (obj.LoadType == typeof (PersistQrCodeSettings))
+                {
+                    this.QrSettingsViewModel.OverrideFrom(obj.MyProperty as PersistQrCodeSettings);
+                }
+                else if (obj.LoadType == typeof (PersistPasswordSettings))
+                {
+                    this.PasswordSettingsViewModel.OverrideFrom(obj.MyProperty as PersistPasswordSettings);
+                }
+            }
+
+            if (!this.loadedTypes.Contains(obj.LoadType))
+                this.loadedTypes.Add(obj.LoadType);
         }
 
         #endregion
@@ -154,7 +198,7 @@ namespace QrCodeWinClient
 
         private void SaveQRCodeToLibrary()
         {
-            ImageSaver.SaveQRCodeToLibrary(QrCodeImage);
+            ImageSaver.SaveQRCodeToLibrary(this.QrCodeImage);
         }
 
         private void SaveQRCodeDialog()
@@ -168,7 +212,7 @@ namespace QrCodeWinClient
 
             if (dlg.ShowDialog().Value)
             {
-                ImageSaver.SaveQRCodeToLibrary(QrCodeImage, dlg.FileName);
+                ImageSaver.SaveQRCodeToLibrary(this.QrCodeImage, dlg.FileName);
             }
         }
 

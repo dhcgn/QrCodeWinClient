@@ -95,6 +95,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ObjectModel">
+      <HintPath>..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ObjectModel.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>C:\DEV\github\QrCodeWinClient\packages\MvvmLightLibs.5.1.1.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -248,6 +251,10 @@
     <ProjectReference Include="..\QrCodeWinClient.PasswordGenerator\QrCodeWinClient.PasswordGenerator.csproj">
       <Project>{ec2d6a8e-c80c-4395-9c9c-3831922bff82}</Project>
       <Name>QrCodeWinClient.PasswordGenerator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QrCodeWinClient.Persistence\QrCodeWinClient.Persistence.csproj">
+      <Project>{d4847111-95ba-412c-8571-843d76e87a8c}</Project>
+      <Name>QrCodeWinClient.Persistence</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
